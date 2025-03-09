@@ -254,7 +254,7 @@ const Home = () => {
             <div className="programming-languages">
               <h2>Programming Languages</h2>
               <div className="skills">
-                <div className="skill"><img src="/Skills/python.png" alt="Python" />Python</div>
+                <div className="skill"><img src="/Portfolio/Skills/python.png" alt="Python" />Python</div>
                 <div className="skill"><img src="/Skills/java.png" alt="Java" />Java</div>
                 <div className="skill"><img src="/Skills/c.png" alt="C" />C</div>
               </div>

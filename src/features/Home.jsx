@@ -170,7 +170,7 @@ const Home = () => {
           <div className="line">
             <div className="line-1"><h1>Hi ! I am Priyanshu Mudgal</h1></div>
             <div className="line-3"><h1><span id="dynamic-text">{dynamicText}</span></h1></div>
-            <div className="resume"><a href="/Skills/Resume-new.pdf" target="_blank">Resume</a></div>
+            <div className="resume"><a href="/Portfolio/Skills/Resume-new.pdf" target="_blank">Resume</a></div>
             <div className="about">
                 <p>Currently in my final year of B.Tech in CSE specializing in AI & Machine Learning at Dronacharya College of Engineering with a strong 8.1 SGPA.</p>
                 <p>I'm a data science enthusiast with proven experience in machine learning, computer vision, and predictive modeling. With multiple hackathon wins and internships at Credent Infotech and Maruti Suzuki, I blend technical expertise with a passion for solving real-world problems.</p>
@@ -255,25 +255,25 @@ const Home = () => {
               <h2>Programming Languages</h2>
               <div className="skills">
                 <div className="skill"><img src="/Portfolio/Skills/python.png" alt="Python" />Python</div>
-                <div className="skill"><img src="/Skills/java.png" alt="Java" />Java</div>
-                <div className="skill"><img src="/Skills/c.png" alt="C" />C</div>
+                <div className="skill"><img src="/Portfolio/Skills/java.png" alt="Java" />Java</div>
+                <div className="skill"><img src="/Portfolio/Skills/c.png" alt="C" />C</div>
               </div>
               <div className="skills">
-                <div className="skill"><img src="/Skills/mysql.png" alt="MySQL" />MYSQL</div>
-                <div className="skill"><img src="/Skills/html.png" alt="HTML" />HTML</div>
-                <div className="skill"><img src="/Skills/css.png" alt="CSS" />CSS</div>
+                <div className="skill"><img src="/Portfolio/Skills/mysql.png" alt="MySQL" />MYSQL</div>
+                <div className="skill"><img src="/Portfolio/Skills/html.png" alt="HTML" />HTML</div>
+                <div className="skill"><img src="/Portfolio/Skills/css.png" alt="CSS" />CSS</div>
               </div>
             </div>
             <div className="databases">
               <h2>Machine Learning</h2>
               <div className="skills">
-                <div className="skill"><img src="/Skills/Statistical-Analysis-Tools-removebg-preview.png" alt="Statistical Modelling" />Statistical Modelling</div>
-                <div className="skill"><img src="/Skills/Predictive-Modeling-removebg-preview.png" alt="Predictive Modelling" />Predictive Modelling</div>
-                <div className="skill"><img src="/Skills/nlp-removebg-preview.png" alt="NLP" />NLP</div>
+                <div className="skill"><img src="/Portfolio/Skills/Statistical-Analysis-Tools-removebg-preview.png" alt="Statistical Modelling" />Statistical Modelling</div>
+                <div className="skill"><img src="/Portfolio/Skills/Predictive-Modeling-removebg-preview.png" alt="Predictive Modelling" />Predictive Modelling</div>
+                <div className="skill"><img src="/Portfolio/Skills/nlp-removebg-preview.png" alt="NLP" />NLP</div>
               </div>
               <div className="skills">
-                <div className="skill"><img src="/Skills/Deep_Learning-removebg-preview.png" alt="Deep Learning" />Deep Learning</div>
-                <div className="skill"><img src="/Skills/exploratory-data-analysis-removebg-preview.png" alt="Exploratory data Analysis" />Exploratory data Analysis</div>
+                <div className="skill"><img src="/Portfolio/Skills/Deep_Learning-removebg-preview.png" alt="Deep Learning" />Deep Learning</div>
+                <div className="skill"><img src="/Portfolio/Skills/exploratory-data-analysis-removebg-preview.png" alt="Exploratory data Analysis" />Exploratory data Analysis</div>
               </div>
             </div>
           </div>
@@ -281,24 +281,24 @@ const Home = () => {
             <div className="programming-languages">
               <h2>Packages</h2>
               <div className="skills">
-                <div className="skill"><img src="/Skills/sklearn.png" alt="SkLearn" />SkLearn</div>
-                <div className="skill"><img src="/Skills/tf-removebg-preview.png" alt="Tensorflow" />Tensorflow</div>
-                <div className="skill"><img src="/Skills/opencv-removebg-preview.png" alt="OpenCV" />OpenCV</div>
+                <div className="skill"><img src="/Portfolio/Skills/sklearn.png" alt="SkLearn" />SkLearn</div>
+                <div className="skill"><img src="/Portfolio/Skills/tf-removebg-preview.png" alt="Tensorflow" />Tensorflow</div>
+                <div className="skill"><img src="/Portfolio/Skills/opencv-removebg-preview.png" alt="OpenCV" />OpenCV</div>
               </div>
               <div className="skills">
-                <div className="skill"><img src="/Skills/numpy-removebg-preview.png" alt="NumPy" />NumPY</div>
-                <div className="skill"><img src="/Skills/pandas-removebg-preview.png" alt="Pandas" />Pandas</div>
-                <div className="skill"><img src="/Skills/matplotlib-removebg-preview.png" alt="Matplotlib" />MatPlotlib</div>
+                <div className="skill"><img src="/Portfolio/Skills/numpy-removebg-preview.png" alt="NumPy" />NumPY</div>
+                <div className="skill"><img src="/Portfolio/Skills/pandas-removebg-preview.png" alt="Pandas" />Pandas</div>
+                <div className="skill"><img src="/Portfolio/Skills/matplotlib-removebg-preview.png" alt="Matplotlib" />MatPlotlib</div>
               </div>
             </div>
             <div className="databases">
               <h2>Concepts</h2>
               <div className="skills">
-                <div className="skill"><img src="/Skills/mlops.png" alt="MLops" />MLops</div>
-                <div className="skill"><img src="/Skills/oop.jpg" alt="OOP" />OOP</div>
+                <div className="skill"><img src="/Portfolio/Skills/mlops.png" alt="MLops" />MLops</div>
+                <div className="skill"><img src="/Portfolio/Skills/oop.jpg" alt="OOP" />OOP</div>
               </div>
               <div className="skills">
-                <div className="skill"><img src="/Skills/dsa-removebg-preview.png" alt="DSA" />DSA</div>
+                <div className="skill"><img src="/Portfolio/Skills/dsa-removebg-preview.png" alt="DSA" />DSA</div>
               </div>
             </div>
           </div>
@@ -306,13 +306,13 @@ const Home = () => {
             <div className="programming-languages">
               <h2>Frameworks & Tools</h2>
               <div className="skills">
-                <div className="skill"><img src="/Skills/django-removebg-preview.png" alt="Django" />Django</div>
-                <div className="skill"><img src="/Skills/flask-removebg-preview.png" alt="Flask" />Flask</div>
+                <div className="skill"><img src="/Portfolio/Skills/django-removebg-preview.png" alt="Django" />Django</div>
+                <div className="skill"><img src="/Portfolio/Skills/flask-removebg-preview.png" alt="Flask" />Flask</div>
               </div>
               <div className="skills">
-                <div className="skill"><img src="/Skills/vss-removebg-preview.png" alt="Visual Studio" />Visual Studio</div>
-                <div className="skill"><img src="/Skills/jupyter-removebg-preview.png" alt="Jupyter Notebook" />Jupyter Notebook</div>
-                <div className="skill"><img src="/Skills/collab-removebg-preview.png" alt="Google Collab" />Google Collab</div>
+                <div className="skill"><img src="/Portfolio/Skills/vss-removebg-preview.png" alt="Visual Studio" />Visual Studio</div>
+                <div className="skill"><img src="/Portfolio/Skills/jupyter-removebg-preview.png" alt="Jupyter Notebook" />Jupyter Notebook</div>
+                <div className="skill"><img src="/Portfolio/Skills/collab-removebg-preview.png" alt="Google Collab" />Google Collab</div>
               </div>
             </div>
           </div>
@@ -327,7 +327,7 @@ const Home = () => {
           <div className="project-data">
             <div className="project-box">
               <div className="project-img">
-                <img src="/Skills/stocks-project.png" alt="Stock prediction project" />
+                <img src="/Portfolio/Skills/stocks-project.png" alt="Stock prediction project" />
               </div>
               <div className="project-box-content">
                 <h1>AI-driven Stock Prediction Model</h1>
@@ -340,7 +340,7 @@ const Home = () => {
             </div>
             <div className="project-box">
               <div className="project-img">
-                <img src="/Skills/plant-project.jpg" alt="Plant disease detection project" />
+                <img src="/Portfolio/Skills/plant-project.jpg" alt="Plant disease detection project" />
               </div>
               <div className="project-box-content">
                 <h1>AI-Powered Plant Disease Detection and Prediction</h1>
@@ -353,7 +353,7 @@ const Home = () => {
             </div>
             <div className="project-box">
               <div className="project-img">
-                <img src="/Skills/face-reco.jpeg" alt="Face recognition project" />
+                <img src="/Portfolio/Skills/face-reco.jpeg" alt="Face recognition project" />
               </div>
               <div className="project-box-content">
                 <h1>Face Recognition</h1>

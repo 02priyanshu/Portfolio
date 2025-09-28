@@ -172,8 +172,8 @@ const Home = () => {
             <div className="line-3"><h1><span id="dynamic-text">{dynamicText}</span></h1></div>
             <div className="resume"><a href="/Portfolio/Skills/Resume-new.pdf" target="_blank">Resume</a></div>
             <div className="about">
-                <p>Currently in my final year of B.Tech in CSE specializing in AI & Machine Learning at Dronacharya College of Engineering with a strong 8.1 SGPA.</p>
-                <p>I'm a data science enthusiast with proven experience in machine learning, computer vision, and predictive modeling. With multiple hackathon wins and internships at Credent Infotech and Maruti Suzuki, I blend technical expertise with a passion for solving real-world problems.</p>
+                <p>I'm currently working as a Software Engineer at Credent Infotech Solution LLP, where I contribute to building impactful solutions using my skills in software development and AI/ML.</p> 
+                <p>I hold a B.Tech degree in Computer Science and Engineering with a specialization in AI & Machine Learning. I have a strong interest in AI/ML and have worked on multiple projects involving machine learning, computer vision, and predictive modeling. My experience, combined with multiple hackathon wins and internships (including one at Maruti Suzuki), reflects my passion for solving real-world problems through technology.</p>
             </div>
           </div>
           {/* <div className="image">

@@ -116,6 +116,10 @@ html {
     margin-top: 50px;
 }
 
+.subTitle {
+    color: #ff0000;
+}
+
 .resume a {
     text-decoration: none;
     font-size: 20px;
@@ -323,7 +327,7 @@ html {
 
 /* Projects Section */
 .projects {
-    background-image: url('./images/bg3.jpg');
+    background-image: url('./images/bg2.jpeg');
     background-size: cover;
     background-attachment: fixed;
 }
@@ -358,11 +362,22 @@ html {
 .project-data {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 40px;
 }
 
+.projects-subtitle {
+    color: #ddd;
+    text-align: center;
+    margin-top: -8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
 .project-box {
-    width: 400px;
+    max-width: 350px;
+    width: 100%;
     border-radius: 10px;
     border: 1px solid black;
     background-color: rgba(0, 0, 0, 0.7);
@@ -370,9 +385,13 @@ html {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+[id^="projects"] .projects-heading {
+    scroll-margin-top: 90px; /* depends on your navbar height */
+}
+
 .project-img img {
-    height: 250px;
-    width: 400px;
+    height: 180px;
+    width: 350px;
     border-radius: 10px;
 }
 
@@ -414,13 +433,13 @@ html {
 
 /* Education Section */
 .education {
-    background-image: url('./images/bg2.jpeg');
+    background-image: url('./images/HD-wallpaper.jpg');
     background-size: cover;
     background-attachment: fixed;
 }
 
 .education-bg {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.6);
     padding-bottom: 20px;
 }
 

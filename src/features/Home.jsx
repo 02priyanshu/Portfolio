@@ -6,7 +6,6 @@ const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [dynamicText, setDynamicText] = useState('');
-  const [projectBgVisible, setProjectBgVisible] = useState(false);
   const [formStatus, setFormStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -14,11 +13,11 @@ const Home = () => {
     email: '',
     message: ''
   });
-  
-  const projectsBgRef = useRef(null);
+
+  // NOTE: We now observe ALL project sections, so this single ref isn't needed per-section.
   const navbarRef = useRef(null);
   const formRef = useRef(null);
-  
+
   const titles = ["Software Developer", "Machine Learning Engineer", "Data Analyst"];
   const titleIndexRef = useRef(0);
   const charIndexRef = useRef(0);
@@ -26,10 +25,7 @@ const Home = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -37,17 +33,18 @@ const Home = () => {
     setIsSubmitting(true);
     setFormStatus('Sending message...');
 
-    emailjs.sendForm(
-      'service_ixt96tu', 
-      'template_75b8kwa', 
-      formRef.current,
-      '-DPokJ93uFAN9zQsl' 
-    )
+    emailjs
+      .sendForm(
+        'service_ixt96tu',
+        'template_75b8kwa',
+        formRef.current,
+        '-DPokJ93uFAN9zQsl'
+      )
       .then((result) => {
         console.log('Email sent successfully!', result.text);
         setFormStatus('Message sent successfully!');
         setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => setFormStatus(''), 5000); 
+        setTimeout(() => setFormStatus(''), 5000);
         setIsSubmitting(false);
       })
       .catch((error) => {
@@ -60,11 +57,11 @@ const Home = () => {
   useEffect(() => {
     const typeEffect = () => {
       const currentTitle = titles[titleIndexRef.current];
-      
+
       if (isDeletingRef.current) {
         setDynamicText(currentTitle.substring(0, charIndexRef.current - 1));
         charIndexRef.current--;
-        
+
         if (charIndexRef.current === 0) {
           isDeletingRef.current = false;
           titleIndexRef.current = (titleIndexRef.current + 1) % titles.length;
@@ -72,74 +69,68 @@ const Home = () => {
       } else {
         setDynamicText(currentTitle.substring(0, charIndexRef.current + 1));
         charIndexRef.current++;
-        
+
         if (charIndexRef.current === currentTitle.length) {
           isDeletingRef.current = true;
         }
       }
-      
+
       setTimeout(typeEffect, isDeletingRef.current ? 200 : 300);
     };
-    
+
     typeEffect();
-    
     return () => clearTimeout(typeEffect);
   }, []);
-  
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
-    
     window.addEventListener('scroll', handleScroll);
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setProjectBgVisible(true);
-        } else {
-          setProjectBgVisible(false);
-        }
+
+    // Observe ALL .projects-bg containers for fade-up animation
+    const observers = [];
+    const targets = Array.from(document.querySelectorAll('.projects-bg'));
+    targets.forEach((el) => {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            el.classList.add('visible');
+          } else {
+            el.classList.remove('visible');
+          }
+        });
       });
+      obs.observe(el);
+      observers.push(obs);
     });
-    
-    if (projectsBgRef.current) {
-      observer.observe(projectsBgRef.current);
-    }
-    
+
     const handleAnchorClick = (e) => {
       const href = e.currentTarget.getAttribute('href');
-      if (href.startsWith('#')) {
+      if (href && href.startsWith('#')) {
         e.preventDefault();
         const target = document.querySelector(href);
         const navHeight = navbarRef.current ? navbarRef.current.offsetHeight : 0;
-        
+
         if (target) {
           window.scrollTo({
             top: target.offsetTop - navHeight,
             behavior: 'smooth'
           });
         }
-        
         setIsMenuActive(false);
       }
     };
-    
+
     const anchors = document.querySelectorAll('a[href^="#"]');
-    anchors.forEach(anchor => {
-      anchor.addEventListener('click', handleAnchorClick);
-    });
-    
+    anchors.forEach((anchor) => anchor.addEventListener('click', handleAnchorClick));
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      observer.disconnect();
-      anchors.forEach(anchor => {
-        anchor.removeEventListener('click', handleAnchorClick);
-      });
+      observers.forEach((o) => o.disconnect());
+      anchors.forEach((anchor) =>
+        anchor.removeEventListener('click', handleAnchorClick)
+      );
     };
   }, []);
 
@@ -152,15 +143,14 @@ const Home = () => {
             <li><a href="#home">HOME</a></li>
             <li><a href="#experience">EXPERIENCE</a></li>
             <li><a href="#skills">SKILLS</a></li>
+            {/* Keep main link to the first (Major) section */}
             <li><a href="#projects">PROJECTS</a></li>
             <li><a href="#education">EDUCATION</a></li>
             <li><a href="#ach">ACHIEVEMENTS</a></li>
             <li><a href="#contact">CONTACT</a></li>
           </ul>
           <div className="menu-toggle" onClick={() => setIsMenuActive(!isMenuActive)}>
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
           </div>
         </div>
       </nav>
@@ -170,14 +160,12 @@ const Home = () => {
           <div className="line">
             <div className="line-1"><h1>Hi ! I am Priyanshu Mudgal</h1></div>
             <div className="line-3"><h1><span id="dynamic-text">{dynamicText}</span></h1></div>
-            <div className="resume"><a href="/Portfolio/Skills/Resume-Priyanshu.pdf" target="_blank">Resume</a></div>
+            <div className="resume"><a href="/Portfolio/Skills/Resume-Priyanshu.pdf" target="_blank" rel="noreferrer">Resume</a></div>
             <div className="about">
-                <p>I'm a Software Engineer at Credent Infotech Solution LLP, specializing in software development and AI/ML solutions.</p>
-                <p>I hold a B.Tech in Computer Science and Engineering with a specialization in AI & Machine Learning. My experience spans machine learning, computer vision, and predictive modeling, backed by hackathon wins and internships including one at Maruti Suzuki.</p></div>
+              <p>I'm a Software Engineer at Credent Infotech Solution LLP, specializing in software development and AI/ML solutions.</p>
+              <p>I hold a B.Tech in Computer Science and Engineering with a specialization in <span className='subTitle'>AI & Machine Learning</span>. My experience spans machine learning, computer vision, and predictive modeling, backed by hackathon wins and internships including one at Maruti Suzuki.</p>
+            </div>
           </div>
-          {/* <div className="image">
-            <img src="mypic-remove.png" alt="Profile" />
-          </div> */}
         </div>
       </section>
 
@@ -191,13 +179,23 @@ const Home = () => {
               <h1>Credent Infotech Solutions</h1>
             </div>
             <div className="experience-role">
-              <h4>Machine Learning Intern</h4>
-              <p>March-2024 to Present</p>
-              <ul>
-                <li>Engineered a Business Operation Management System (BOMS) using React.js for frontend and Django for backend, improving operational efficiency by 30%.</li>
-                <li>Developed a web-based OCR text extraction system with custom fine-tuned ML models, achieving 95% accuracy in document text recognition.</li>
-                <li>Worked extensively on LLMs, Computer Vision, Deep Learning, SQL databases, React, and Django. </li>
-              </ul>
+              <div>
+                <h4>Software Developer</h4>
+                <p>April-2025 to Present</p>
+                <ul>
+                  <li>Developed time series forecasting system with React.js frontend and Django backend, using chronos-t5-large models to predict 6-month volume projections with 85% MAPE accuracy.</li>
+                  <li>Developed a multi-tenant web-based OCR system by implementing custom fine-tuned ML models, resulting in 95% accurate extraction and transformation of document text into structured data formats.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Machine Learning Engineer</h4>
+                <p>March-2024 to March-2025</p>
+                <ul>
+                  <li>Developed a Business Operation Management System (BOMS) using React.js for frontend and Django for backend, improving operational efficiency by 30%.</li>
+                  <li>Engineered a real-time face recognition system by designing and implementing custom CNN architecture, resulting in 94% accurate multi-face detection across both image and video inputs, with 200ms response time and SQL database integration supporting 100+ identity profiles.</li>
+                  <li>Worked extensively on LLMs, Computer Vision, Deep Learning, SQL databases, React, and Django. </li>
+                </ul>
+              </div>
             </div>
           </div>
           <hr />
@@ -318,11 +316,62 @@ const Home = () => {
         </div>
       </div>
 
+      {/* =========================
+          PROJECTS — MAJOR 
+          ========================= */}
       <section id="projects" className="projects">
-        <div className={`projects-bg ${projectBgVisible ? 'visible' : ''}`} ref={projectsBgRef}>
+        <div className="projects-bg">
           <div className="projects-heading">
-            <h1>Projects</h1>
+            <h1>Flagship Projects (Personal – Major)</h1>
           </div>
+
+          <div className="project-data">
+            {/* Dummy Project 1 */}
+            <div className="project-box">
+              <div className="project-img">
+                <img src="/Portfolio/projects/interviewaihub.png" alt="Project placeholder" />
+              </div>
+              <div className="project-box-content">
+                <h1>AI Interview Preparation Platform</h1>
+                <p>
+                  Developed full-stack AI-powered interview preparation platform. Implementing 6+ core features including resume analysis, cover letter generation, and mock interviews.
+                </p>
+                <p>Tech Used — Next.js, Django, LLMs, MySQL</p>
+              </div>
+              <div className="project-button">
+                <button><a href="https://www.interviewaihub.com/">View Project</a></button>
+              </div>
+            </div>
+
+            {/* Dummy Project 2 */}
+            <div className="project-box">
+              <div className="project-img">
+                <img src="/Portfolio/projects/rag.png" alt="Project placeholder" />
+              </div>
+              <div className="project-box-content">
+                <h1>Document Q/A using RAG</h1>
+                <p>
+                  Upload your files (PDFs, images) and interact with them through natural questions—RAG retrieves the right context and delivers accurate, cited answers.
+                </p>
+                <p>Tech Used — React.js, Django, Rag, MySQL</p>
+              </div>
+              <div className="project-button">
+                <button><a href="https://rag.interviewaihub.com/">View Project</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================
+          PROJECTS — MINOR 
+          ========================= */}
+      <section id="projects-minor" className="projects">
+        <div className="projects-bg">
+          <div className="projects-heading">
+            <h1>Personal Projects (Minor)</h1>
+          </div>
+
           <div className="project-data">
             <div className="project-box">
               <div className="project-img">
@@ -337,6 +386,7 @@ const Home = () => {
                 <button><a href="https://github.com/02priyanshu/IntelliTrade---AI-driven-Stock-Prediction-Model.github.io.git">View Project</a></button>
               </div>
             </div>
+
             <div className="project-box">
               <div className="project-img">
                 <img src="/Portfolio/Skills/plant-project.jpg" alt="Plant disease detection project" />
@@ -350,18 +400,77 @@ const Home = () => {
                 <button><a href="https://github.com/02priyanshu/PlantGuard-AI-Powered-Plant-Disease-Detection-and-Prediction.git">View Project</a></button>
               </div>
             </div>
+
             <div className="project-box">
               <div className="project-img">
                 <img src="/Portfolio/Skills/face-reco.jpeg" alt="Face recognition project" />
               </div>
               <div className="project-box-content">
-                <h1>Face Recognition</h1>
-                <p>I developed a face recognition model that predicts individuals' names from images, and extended it to process videos, detecting and identifying all appearing persons.</p>
-                <p>Tech Stack : OpenCV, Cnn, TensorFlow, MTCNN</p>
+                <h1>Book-recommendation</h1>
+                <p>An intelligent book recommendation tool that helps readers discover new books personalized to their interests.</p>
+                <p>Tech Stack : Javascript, flask, KNN, TensorFlow, MTCNN</p>
               </div>
               <div className="project-button">
-                <button><a href="#">View Project</a></button>
+                <button><a href="https://github.com/02priyanshu/book-recommendation.git">View Project</a></button>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================
+          PROJECTS — CLIENT 
+          ========================= */}
+      <section id="projects-client" className="projects">
+        <div className="projects-bg">
+          <div className="projects-heading">
+            <h1>Client Projects</h1>
+          </div>
+
+          <div className="project-data">
+            {/* Client Project 1 */}
+            <div className="project-box">
+              <div className="project-img">
+                <img src="/Portfolio/projects/ocr.png" alt="Client project placeholder" />
+              </div>
+              <div className="project-box-content">
+                <h1>Bodhpatra-Document Processing Tool</h1>
+                <p>Bodhpatra is a smart document processing tool where users can upload PDFs or images and instantly convert them into structured, usable data. It uses OCR and AI to extract text, tables, and key fields accurately, making unorganized documents easy to analyze and integrate.</p>
+                <p>Tech Used — React, Django, MySQL, Azure AD, LLMs</p>
+              </div>
+              {/* <div className="project-button">
+                <button><a href="#">View Project</a></button>
+              </div> */}
+            </div>
+
+            {/* Client Project 2 */}
+            <div className="project-box">
+              <div className="project-img">
+                <img src="/Portfolio/projects/forecasting.png" alt="Client project placeholder" />
+              </div>
+              <div className="project-box-content">
+                <h1>Forecasting Tool</h1>
+                <p>An AI-powered forecasting tool designed to analyze historical trade data and predict both the volume and price of medicine imports and exports. It helps businesses and policymakers anticipate market demand, plan logistics, and make informed decisions in the pharmaceutical supply chain.</p>
+                <p>Tech Used — React, Django, Chronos-T5 LLM, MySQL</p>
+              </div>
+              {/* <div className="project-button">
+                <button><a href="#">View Project</a></button>
+              </div> */}
+            </div>
+
+            {/* Client Project 3 */}
+            <div className="project-box">
+              <div className="project-img">
+                <img src="/Portfolio/projects/entity.png" alt="Client project placeholder" />
+              </div>
+              <div className="project-box-content">
+                <h1>Business System Operation Management System</h1>
+                <p>A web-based system to easily create and manage RFPs, RFQs, and quotations, helping teams work faster and more efficiently.</p>
+                <p>Tech Used — React, Django REST, MySQL</p>
+              </div>
+              {/* <div className="project-button">
+                <button><a href="#">View Project</a></button>
+              </div> */}
             </div>
           </div>
         </div>

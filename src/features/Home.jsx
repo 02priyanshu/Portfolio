@@ -138,7 +138,7 @@ const Home = () => {
     <>
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`} ref={navbarRef}>
         <div className="navbar-container">
-          <a href="#" className="brand">Code</a>
+          <span>Code</span>
           <ul className={`nav-links ${isMenuActive ? 'active' : ''}`}>
             <li><a href="#home">HOME</a></li>
             <li><a href="#experience">EXPERIENCE</a></li>

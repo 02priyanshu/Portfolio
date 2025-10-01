@@ -160,7 +160,7 @@ const Home = () => {
           <div className="line">
             <div className="line-1"><h1>Hi ! I am Priyanshu Mudgal</h1></div>
             <div className="line-3"><h1><span id="dynamic-text">{dynamicText}</span></h1></div>
-            <div className="resume"><a href="/Portfolio/Skills/Resume-Priyanshu.pdf" target="_blank" rel="noreferrer">Resume</a></div>
+            <div className="resume"><a href="/Portfolio/Skills/software_engineer.pdf" target="_blank" rel="noreferrer">Resume</a></div>
             <div className="about">
               <p>I'm a Software Engineer at Credent Infotech Solution LLP, specializing in software development and AI/ML solutions.</p>
               <p>I hold a B.Tech in Computer Science and Engineering with a specialization in <span className='subTitle'>AI & Machine Learning</span>. My experience spans machine learning, computer vision, and predictive modeling, backed by hackathon wins and internships including one at Maruti Suzuki.</p>

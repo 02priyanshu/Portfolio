@@ -403,7 +403,7 @@ const Home = () => {
 
             <div className="project-box">
               <div className="project-img">
-                <img src="/Portfolio/Skills/face-reco.jpeg" alt="Face recognition project" />
+                <img src="/Portfolio/projects/book.png" alt="Face recognition project" />
               </div>
               <div className="project-box-content">
                 <h1>Book-recommendation</h1>
